@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:55:08 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/02/22 16:56:54 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/02/22 19:51:59 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 
 void	ft_parsing(t_data *data, char *argv)
 {
-	
+	if (check_arg(argv))
 }

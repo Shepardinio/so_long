@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 21:31:47 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/02/22 16:33:14 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/02/22 17:59:30 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	t_data *data;
 
 	if (argc != 2)
-		return (printf("to mut"));
+		return (printf("Error, too much arguments\n"), -1);
 	init_data(&data);
 	ft_parsing(&data, argv[1]);
 }
