@@ -5,7 +5,9 @@ CFLAGS = -Wall -Werror -Wextra -g3
 
 LIBFT = lib/libft.a
 SRC_DIR = ./src
-SRC :=	main.c
+SRC :=	main.c\
+		parsing.c\
+		print.c
 
 SRC := $(addprefix $(SRC_DIR)/, $(SRC))
 OBJ_DIR = obj
