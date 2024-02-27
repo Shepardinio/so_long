@@ -7,7 +7,8 @@ LIBFT = lib/libft.a
 SRC_DIR = ./src
 SRC :=	main.c\
 		parsing.c\
-		print.c
+		print.c\
+		free.c
 
 SRC := $(addprefix $(SRC_DIR)/, $(SRC))
 OBJ_DIR = obj

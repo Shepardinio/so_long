@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 17:45:03 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/02/01 16:31:17 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/02/27 14:05:01 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LIBFT_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 2048
 # endif
 
 # include <unistd.h>
