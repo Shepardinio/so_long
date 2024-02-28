@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 15:25:00 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/02/26 18:23:35 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:27:19 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	print_err(enum e_error id)
 	{
 		if (id == g_error[i].id)
 		{
-			ft_putstr_fd(g_error[i].err_msg, 1);
+			ft_putstr_fd(g_error[i].err_msg, 2);
 			break ;
 		}
 		i++;

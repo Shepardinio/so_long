@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 10:44:52 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/02/01 16:26:21 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/02/28 14:26:48 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+		return (free(stash), NULL);
 	readfile(fd, &stash);
 	if (!stash)
 		return (NULL);

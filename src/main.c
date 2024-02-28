@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 21:31:47 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/02/27 18:25:31 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:28:41 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	init_data(t_data *data)
 {
 	data->map = NULL;
+	data->line = 0;
 }
 
 int	main(int argc, char **argv)
@@ -27,7 +28,7 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	err = ft_parsing(&data, argv[1]);
 	if (err)
-		return (print_err(err), -1);
+		return (free_map(&data), print_err(err), -1);
 	free_map(&data);
 	return (printf("GOOD\n"), 0);
 }
