@@ -7,6 +7,7 @@ LIBFT = lib/libft.a
 SRC_DIR = ./src
 SRC :=	main.c\
 		parsing.c\
+		check_map.c\
 		print.c\
 		free.c
 

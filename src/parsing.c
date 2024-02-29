@@ -6,24 +6,21 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:55:08 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/02/28 18:11:33 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/02/29 17:47:58 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-int	check_map(t_data *data)
+int	check_nbelem(t_data *data)
 {
-	int len_x;
-	int len_y;
-	int i;
-
-	i = 0;
-	len_x = ft_strlen(data->map[0]);
-	while (data->map[i] != NULL)
-	{
-		
-	}
+	if (data->col == 0)
+		return (E_INV_MAP);
+	if (data->ext != 1)
+		return (E_INV_MAP);
+	if (data->play != 1)
+		return (E_INV_MAP);
+	return (EXIT_SUCCESS);
 }
 
 int	count_line(char *av)
@@ -56,10 +53,10 @@ int	get_map(t_data *data, char *av)
 	int	fd;
 
 	i = 0;
-	data->line = count_line(av);
-	if (data->line < 0)
+	data->len_y = count_line(av);
+	if (data->len_y < 0)
 		return (E_GNL);
-	data->map = malloc(sizeof(char *) * (data->line + 1));
+	data->map = malloc(sizeof(char *) * (data->len_y + 1));
 	if (data->map == NULL)
 		return (E_GNL);
 	fd = open(av, O_RDONLY);
@@ -92,9 +89,19 @@ int	ft_parsing(t_data *data, char *argv)
 		return (E_INV_FMT);
 	if (get_map(data, argv))
 		return (E_GNL);
-	if (data->line >= 0 && data->line <= 2)
-			return (E_TOO_SML);
-	if (check_map(data))
+	if (data->len_y >= 0 && data->len_y <= 2)
+		return (E_TOO_SML);
+	if (check_len_line(data))
 		return (E_INV_MAP);
+	if (check_wall(data))
+		return (E_INV_MAP);
+	if (check_elem(data))
+		return (E_INV_MAP);
+	if (check_nbelem(data))
+		return (E_INV_MAP);
+	if (ft_cpy_map(data))
+		return (E_MALLOC);
+	flood_fill(data->map, *data);
+	free_map_copy(data);
 	return (EXIT_SUCCESS);
 }

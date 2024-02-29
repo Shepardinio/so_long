@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 21:31:47 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/02/28 17:28:41 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:29:54 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,14 @@
 void	init_data(t_data *data)
 {
 	data->map = NULL;
-	data->line = 0;
+	data->map_copy = NULL;
+	data->y = 0;
+	data->x = 0;
+	data->len_y = 0;
+	data->len_x = 0;
+	data->col = 0;
+	data->play = 0;
+	data->ext = 0;
 }
 
 int	main(int argc, char **argv)
