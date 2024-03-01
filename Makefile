@@ -8,6 +8,7 @@ SRC_DIR = ./src
 SRC :=	main.c\
 		parsing.c\
 		check_map.c\
+		flood_fill.c\
 		print.c\
 		free.c
 

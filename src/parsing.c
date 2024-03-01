@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:55:08 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/02/29 17:47:58 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/01 14:49:34 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	ft_parsing(t_data *data, char *argv)
 		return (E_INV_MAP);
 	if (ft_cpy_map(data))
 		return (E_MALLOC);
-	flood_fill(data->map, *data);
+	flood_fill(data->map, data);
 	free_map_copy(data);
 	return (EXIT_SUCCESS);
 }
