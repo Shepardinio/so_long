@@ -6,26 +6,64 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 12:34:26 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/01 15:05:32 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/04 18:29:10 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	fill(char **tab, t_data cur, char to_fill)
+static int	check_flood_fill(char **map)
 {
-	if (cur.y < 0 || cur.y >= cur.len_y || cur.x < 0
-		|| cur.x >= cur.len_x || tab[cur.y][cur.x] != to_fill)
-		return ;
+	int	i;
+	int	j;
 
-	tab[cur.y][cur.x] = 'F';
-	fill(tab, (t_data){cur.x - 1, cur.y}, to_fill);
-	fill(tab, (t_data){cur.x + 1, cur.y}, to_fill);
-	fill(tab, (t_data){cur.x, cur.y - 1}, to_fill);
-	fill(tab, (t_data){cur.x, cur.y + 1}, to_fill);
+	i = 0;
+	j = 0;
+	while (map[j] != NULL)
+	{
+		i = 0;
+		while (map[j][i])
+		{
+			if (map[j][i] == 'C' || map[j][i] == 'E')
+				return (E_INV_MAP);
+			i++;
+		}
+		j++;
+	}
+	return (EXIT_SUCCESS);
 }
 
-void	flood_fill(char **tab, t_data *data)
+static int	is_to_fill(char c, char *to_fill)
 {
-	fill(data->map_copy, *data, data->map_copy[data->y][data->x]);
+	int	i;
+
+	i = 0;
+	while (to_fill[i])
+	{
+		if (c == to_fill[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+static void	fill(t_data *data, int x, int y, char *to_fill)
+{
+	if (y < 0 || y >= data->len_y || x < 0 || x >= data->len_x
+		|| is_to_fill(data->map_copy[y][x], to_fill))
+		return ;
+	data->map_copy[y][x] = 'F';
+	fill(data, x - 1, y, to_fill);
+	fill(data, x + 1, y, to_fill);
+	fill(data, x, y - 1, to_fill);
+	fill(data, x, y + 1, to_fill);
+}
+
+int	flood_fill(t_data *data)
+{
+	char to_fill[] = "P0CE";
+	fill(data, data->x, data->y, to_fill);
+	if (check_flood_fill(data->map_copy))
+		return (free_map_copy(data), E_INV_MAP);
+	return (free_map_copy(data), EXIT_SUCCESS);
 }

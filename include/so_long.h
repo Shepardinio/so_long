@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 14:17:13 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/01 14:37:00 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/04 18:02:16 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		check_wall(t_data *data);
 int		check_elem(t_data *data);
 int		check_nbelem(t_data *data);
 int		ft_cpy_map(t_data *data);
-void	flood_fill(char **tab, t_data *data);
+int		flood_fill(t_data *data);
 void	free_map(t_data *data);
 void	free_map_copy(t_data *data);
 
