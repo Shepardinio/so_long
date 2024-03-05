@@ -6,14 +6,14 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 14:17:13 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/04 18:02:16 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:42:37 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../lib/libft.h"
+# include "../libft/libft.h"
 
 typedef struct s_data
 {

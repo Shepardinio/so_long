@@ -3,7 +3,7 @@ NAME = so_long
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g3
 
-LIBFT = lib/libft.a
+LIBFT = libft/libft.a
 SRC_DIR = ./src
 SRC :=	main.c\
 		parsing.c\
@@ -20,7 +20,7 @@ all: $(NAME)
 	@printf "\e[32mSo Long OK\e[0m\n"
 
 $(NAME): $(OBJ)
-	@$(MAKE) -C lib
+	@$(MAKE) -C libft
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
@@ -29,15 +29,15 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 norminette:
 	norminette $(SRC_DIR)
-	norminette lib
+	norminette libft
 	norminette ./include/
 
 clean:
-	@$(MAKE) -C lib clean
+	@$(MAKE) -C libft clean
 	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	@$(MAKE) -C lib fclean
+	@$(MAKE) -C libft fclean
 	@rm -f $(NAME)
 
 re: fclean all
