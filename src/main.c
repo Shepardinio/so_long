@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 21:31:47 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/02/29 15:29:54 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/05 21:52:53 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	main(int argc, char **argv)
 	err = ft_parsing(&data, argv[1]);
 	if (err)
 		return (free_map(&data), print_err(err), -1);
+	start_game(&data);
 	free_map(&data);
 	return (printf("GOOD\n"), 0);
 }

@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 14:17:13 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/05 19:42:37 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/05 22:01:30 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,13 @@
 # define SO_LONG_H
 
 # include "../libft/libft.h"
+# include "../minilibx-linux/mlx.h"
 
 typedef struct s_data
 {
+	void	*mlx;
+	void	*mlx_win;
+	
 	char	**map;
 	char	**map_copy;
 	int		y;
@@ -61,5 +65,7 @@ int		ft_cpy_map(t_data *data);
 int		flood_fill(t_data *data);
 void	free_map(t_data *data);
 void	free_map_copy(t_data *data);
+
+void	start_game(t_data *data);
 
 #endif
