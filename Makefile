@@ -11,6 +11,7 @@ SRC :=	main.c\
 		flood_fill.c\
 		print.c\
 		free.c\
+		engine.c\
 		game.c
 
 SRC := $(addprefix $(SRC_DIR)/, $(SRC))

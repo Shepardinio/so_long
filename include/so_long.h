@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 14:17:13 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/05 22:01:30 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:44:15 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,17 @@
 
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx_int.h"
 
 typedef struct s_data
 {
 	void	*mlx;
 	void	*mlx_win;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 	
 	char	**map;
 	char	**map_copy;
@@ -65,7 +71,8 @@ int		ft_cpy_map(t_data *data);
 int		flood_fill(t_data *data);
 void	free_map(t_data *data);
 void	free_map_copy(t_data *data);
+void	ft_destroy_all(t_data *data);
 
-void	start_game(t_data *data);
+void	ft_init_game(t_data *data);
 
 #endif
