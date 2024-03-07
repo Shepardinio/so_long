@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 21:31:47 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/06 18:44:26 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/07 18:39:16 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ int	main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 	t_data	data;
-	// int		err;
+	int		err;
 
-	// if (argc != 2)
-	// 	return (printf("Error\ntoo much arguments\n"), -1);
+	if (argc != 2)
+		return (printf("Error\ntoo much arguments\n"), -1);
 	init_data(&data);
-	// err = ft_parsing(&data, argv[1]);
-	// if (err)
-	// 	return (free_map(&data), print_err(err), -1);
-		ft_init_game(&data);
+	err = ft_parsing(&data, argv[1]);
+	if (err)
+		return (free_map(&data), print_err(err), -1);
+	ft_init_game(&data);
 	// start_game(&data);
 	ft_destroy_all(&data);
 	free_map(&data);
