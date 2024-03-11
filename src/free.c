@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:07:33 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/07 21:29:25 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:27:38 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,22 @@ void	free_map_copy(t_data *data)
 	free(data->map_copy);
 }
 
-void	ft_destroy_all(t_data *data)
+void	ft_destroy_all(int err, t_data *data)
 {
-	// (void)data;
-	// mlx_clear_window(data->mlx, data->mlx_win);
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
+	(void)data;
+	if (err == 0)
+	{
+		mlx_destroy_image(data->mlx, data->img);
+		write(1, "destroy_image\n", 14);
+	}
+	if (err <= E_MLX_NI)
+	{
+		mlx_destroy_display(data->mlx);
+		write(1, "destroy_display\n", 16);
+	}
+	if (err <= E_MLX_NW)
+	{
+		free(data->mlx);
+		write(1, "free data\n", 10);
+	}
 }
