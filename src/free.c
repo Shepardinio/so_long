@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:07:33 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/11 16:27:38 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/12 14:48:52 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	ft_destroy_all(int err, t_data *data)
 	}
 	if (err <= E_MLX_NI)
 	{
+		mlx_destroy_window(data->mlx, data->mlx_win);
 		mlx_destroy_display(data->mlx);
 		write(1, "destroy_display\n", 16);
 	}
