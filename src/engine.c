@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:55:28 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/11 16:07:37 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/12 12:58:01 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	handle_keypress(int keycode, t_data *data)
 		printf("S\n");
 	else if (keycode == 100)
 		printf("D\n");
+	else if (keycode == 188935040)
+		printf("ESC\n");
 	return (0);
 }
 
@@ -56,6 +58,7 @@ int	ft_init_game(t_data *data)
 	}
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 	mlx_hook(data->mlx_win, 2, 1L<<0, handle_keypress, data);
+	mlx_hook(data->mlx_win, 33, 1L<<17, handle_keypress, data);
 	mlx_loop(data->mlx);
 	return (EXIT_SUCCESS);
 }
