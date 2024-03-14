@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 14:17:13 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/12 16:15:47 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:38:26 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_data
 	char **map_copy;
 	int y;
 	int x;
+	int i;
+	int j;
 	int len_y;
 	int len_x;
 	int col;
