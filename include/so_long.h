@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 14:17:13 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/14 13:38:26 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:09:16 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,44 @@
 #include "../minilibx-linux/mlx.h"
 #include "../minilibx-linux/mlx_int.h"
 
+# define WALL "image/wall.xpm"
+# define FLOOR "image/floor.xpm"
+# define COLLECT "image/item.xpm"
+# define C_EXIT "image/doorclose.xpm"
+# define O_EXIT "image/exit.xpm"
+# define PLAYER "image/azazel.xpm"
+# define FIND_FAITH "image/angel.xpm"
+
 typedef struct s_data
 {
-	void *mlx;
-	void *mlx_win;
-	void *img;
-	char *addr;
-	int bits_per_pixel;
-	int line_length;
-	int endian;
+	void 	*mlx;
+	void 	*mlx_win;
+	void 	*img;
+	int		img_width;
+	int		img_height;
+	void	*wall;
+	void	*floor;
+	void	*collect;
+	void	*c_exit;
+	void	*o_exit;
+	void	*player;
+	void	*f_faith;
+	char 	*addr;
+	int 	bits_per_pixel;
+	int 	line_length;
+	int 	endian;
 
-	int color;
-
-	char **map;
-	char **map_copy;
-	int y;
-	int x;
-	int i;
-	int j;
-	int len_y;
-	int len_x;
-	int col;
-	int play;
-	int ext;
+	char 	**map;
+	char 	**map_copy;
+	int 	y;
+	int 	x;
+	int 	i;
+	int 	j;
+	int 	len_y;
+	int 	len_x;
+	int 	col;
+	int 	play;
+	int 	ext;
 } t_data;
 
 enum e_error
