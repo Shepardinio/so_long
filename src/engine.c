@@ -6,18 +6,17 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:55:28 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/15 17:37:21 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/18 18:07:26 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_data *data, int x, int y)
 {
 	char	*dst;
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
 }
 
 int	handle_keypress(int keycode, t_data *data)
@@ -27,21 +26,13 @@ int	handle_keypress(int keycode, t_data *data)
 	if (keycode == XK_Escape)
 		mlx_loop_end(data->mlx);
 	else if (keycode == XK_w)
-	{
-		printf("W\n");
-	}
+		move_top(data);
 	else if (keycode == XK_a)
-	{
-		printf("A\n");
-	}
+		move_left(data);
 	else if (keycode == XK_s)
-	{
-		printf("S\n");
-	}
+		move_down(data);
 	else if (keycode == XK_d)
-	{
-		printf("D\n");
-	}
+		move_right(data);
 	return (0);
 }
 
@@ -53,43 +44,43 @@ int	exit_game(t_data *data)
 
 int	loop(t_data *data)
 {
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-	while (j < 50)
+	while (data->map[data->j])
 	{
-		i = 0;
-		while (i < 50)
+		data->i = 0;
+		while (data->map[data->j][data->i])
 		{
-			my_mlx_pixel_put(data, data->i + i, data->j + j, data->color);
-			i++;
+			if (data->map[data->j][data->i] == '1')
+				mlx_put_image_to_window(data->mlx, data->mlx_win, data->wall, data->i * 64, data->j * 64);
+			if (data->map[data->j][data->i] == '0')
+				mlx_put_image_to_window(data->mlx, data->mlx_win, data->floor, data->i * 64, data->j * 64);
+			if (data->map[data->j][data->i] == 'C')
+				mlx_put_image_to_window(data->mlx, data->mlx_win, data->collect, data->i * 64, data->j * 64);
+			if (data->map[data->j][data->i] == 'E')
+				mlx_put_image_to_window(data->mlx, data->mlx_win, data->c_exit, data->i * 64, data->j * 64);
+			if (data->map[data->j][data->i] == 'E' && data->col == 0)
+				mlx_put_image_to_window(data->mlx, data->mlx_win, data->o_exit, data->i * 64, data->j * 64);
+			if (data->map[data->j][data->i] == 'P')
+				mlx_put_image_to_window(data->mlx, data->mlx_win, data->player, data->i * 64, data->j * 64);
+			if (data->map[data->j][data->i] == 'P' && data->col == 0)
+				mlx_put_image_to_window(data->mlx, data->mlx_win, data->f_faith, data->i * 64, data->j * 64);
+			data->i++;
 		}
-		j++;
+		data->j++;
 	}
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
+	data->j = 0;
 	return (0);
 }
 
 int	ft_init_game(t_data *data)
 {
-	data->mlx = mlx_init();
-	if (data->mlx == NULL)
-		return (E_MLX_INI);
-	data->mlx_win = mlx_new_window(data->mlx, data->len_y * 64, data->len_x * 64, "./so_long");
+	data->mlx_win = mlx_new_window(data->mlx, (data->len_x + 1) * 64, data->len_y * 64, "./so_long");
 	if (data->mlx_win == NULL)
-		return (E_MLX_NW);
+		ft_clean_and_exit(data);
 	if (init_image(data))
-		return (1);
-	data->img = mlx_new_image(data->mlx, 500, 500);
-	if (data->img == NULL)
-		return (E_MLX_NI);
-	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
+		ft_clean_and_exit(data);
+	mlx_loop_hook(data->mlx, loop, data);
+	mlx_hook(data->mlx_win, 17, 0L, exit_game, data);
 	mlx_hook(data->mlx_win, 2, 1L<<0, handle_keypress, data);
-	mlx_hook(data->mlx_win, 17, 0L, &exit_game, data);
-	
-	mlx_loop_hook(data->mlx, &loop, data);
 	mlx_loop(data->mlx);
 	
 	return (EXIT_SUCCESS);
