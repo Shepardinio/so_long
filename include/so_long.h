@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 14:17:13 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/18 17:58:06 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/20 19:18:40 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,21 @@
 # define C_EXIT "image/exitclose.xpm"
 # define O_EXIT "image/exit.xpm"
 # define PLAYER "image/azazel.xpm"
+# define PLAYERDOOR "image/azazelondoor.xpm"
 # define FIND_FAITH "image/uriel.xpm"
 
 typedef struct s_data
 {
 	void 	*mlx;
 	void 	*mlx_win;
-	void 	*img;
 	void	*wall;
 	void	*floor;
 	void	*collect;
 	void	*c_exit;
 	void	*o_exit;
 	void	*player;
+	void	*playerdoor;
 	void	*f_faith;
-
-	char 	*addr;
-	int 	bits_per_pixel;
-	int 	line_length;
-	int 	endian;
 
 	char 	**map;
 	char 	**map_copy;
@@ -54,7 +50,9 @@ typedef struct s_data
 	int 	col;
 	int 	play;
 	int 	ext;
+	int		flg;
 } t_data;
+
 
 enum e_error
 {
@@ -97,16 +95,20 @@ int		ft_cpy_map(t_data *data);
 int		flood_fill(t_data *data);
 void	free_map(t_data *data);
 void	free_map_copy(t_data *data);
+int		exit_game(t_data *data);
 void	ft_clean_and_exit(t_data *data);
 int		ft_clean_and_return(t_data *data);
 
 int		ft_init_game(t_data *data);
 int		init_image(t_data *data);
 
-void	move_top(t_data *d);
 int		loop(t_data *data);
+void	render(t_data *data);
+
+void	move_top(t_data *d);
 void	move_down(t_data *d);
 void	move_right(t_data *d);
 void	move_left(t_data *d);
+
 
 #endif

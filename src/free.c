@@ -6,11 +6,17 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:07:33 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/18 17:59:24 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/20 19:30:13 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+int	exit_game(t_data *data)
+{
+	mlx_loop_end(data->mlx);
+	return (0);
+}
 
 void	free_map(t_data *data)
 {
@@ -50,6 +56,8 @@ void	ft_clean_and_exit(t_data *data)
 		mlx_destroy_image(data->mlx, data->o_exit);
 	if (data->player != NULL)
 		mlx_destroy_image(data->mlx, data->player);
+	if (data->playerdoor != NULL)
+		mlx_destroy_image(data->mlx, data->playerdoor);
 	if (data->f_faith != NULL)
 		mlx_destroy_image(data->mlx, data->f_faith);
 	if (data->mlx != NULL)
@@ -78,6 +86,8 @@ int	ft_clean_and_return(t_data *data)
 		mlx_destroy_image(data->mlx, data->o_exit);
 	if (data->player != NULL)
 		mlx_destroy_image(data->mlx, data->player);
+	if (data->playerdoor != NULL)
+		mlx_destroy_image(data->mlx, data->playerdoor);
 	if (data->f_faith != NULL)
 		mlx_destroy_image(data->mlx, data->f_faith);
 	if (data->mlx != NULL)
