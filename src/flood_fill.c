@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 12:34:26 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/20 19:12:29 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/22 16:05:13 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	check_flood_fill(char **map)
 	return (EXIT_SUCCESS);
 }
 
-static int	is_to_fill(char c, char *to_fill)
+static int	is_to_fill(char c, char const *to_fill)
 {
 	int	i;
 
@@ -47,7 +47,7 @@ static int	is_to_fill(char c, char *to_fill)
 	return (1);
 }
 
-static void	fill(t_data *data, int x, int y, char *to_fill)
+static void	fill(t_data *data, int x, int y, char const *to_fill)
 {
 	if (y < 0 || y >= data->len_y || x < 0 || x >= data->len_x
 		|| is_to_fill(data->map_copy[y][x], to_fill))
@@ -61,7 +61,8 @@ static void	fill(t_data *data, int x, int y, char *to_fill)
 
 int	flood_fill(t_data *data)
 {
-	char to_fill[] = "P0CE";
+	char const	to_fill[] = "P0CE";
+
 	fill(data, data->x, data->y, to_fill);
 	if (check_flood_fill(data->map_copy))
 		return (free_map_copy(data), E_INV_MAP);

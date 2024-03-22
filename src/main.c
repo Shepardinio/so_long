@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 21:31:47 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/20 19:18:57 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:48:45 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ void	init_data(t_data *data)
 	data->playerdoor = NULL;
 	data->f_faith = NULL;
 }
+	/*data->mlx_img = NULL;
+	data->win_width = 0;
+	data->win_height = 0;*/
 
 int	main(int argc, char **argv)
 {

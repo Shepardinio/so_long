@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 08:54:44 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/05 02:48:21 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:42:18 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_cpy_map(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	data->map_copy = malloc(sizeof(char *) * (data->len_y + 1));

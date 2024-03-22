@@ -11,8 +11,10 @@ SRC :=	main.c\
 		flood_fill.c\
 		print.c\
 		free.c\
+		game.c\
 		engine.c\
-		game.c
+		engine2/engine2.0.c\
+		engine2/engine2.1.c
 
 SRC := $(addprefix $(SRC_DIR)/, $(SRC))
 OBJ_DIR = obj

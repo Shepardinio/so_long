@@ -6,16 +6,16 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 14:17:13 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/20 19:18:40 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:55:13 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
-#define SO_LONG_H
+# define SO_LONG_H
 
-#include "../libft/libft.h"
-#include "../minilibx-linux/mlx.h"
-#include "../minilibx-linux/mlx_int.h"
+# include "../libft/libft.h"
+# include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx_int.h"
 
 # define WALL "image/wall.xpm"
 # define FLOOR "image/floor.xpm"
@@ -28,8 +28,8 @@
 
 typedef struct s_data
 {
-	void 	*mlx;
-	void 	*mlx_win;
+	void	*mlx;
+	void	*mlx_win;
 	void	*wall;
 	void	*floor;
 	void	*collect;
@@ -39,20 +39,48 @@ typedef struct s_data
 	void	*playerdoor;
 	void	*f_faith;
 
-	char 	**map;
-	char 	**map_copy;
-	int 	y;
-	int 	x;
-	int 	i;
-	int 	j;
-	int 	len_y;
-	int 	len_x;
-	int 	col;
-	int 	play;
-	int 	ext;
+	char	**map;
+	char	**map_copy;
+	int		y;
+	int		x;
+	int		i;
+	int		j;
+	int		len_y;
+	int		len_x;
+	int		col;
+	int		play;
+	int		ext;
+	int		flg;
+}	t_data;
+
+typedef struct s_data
+{
+	void	*mlx;
+	void	*mlx_win;
+	t_img	*mlx_img;
+	int		win_width;
+	int		win_height;	
+	t_img	*wall;
+	t_img	*floor;
+	t_img	*collect;
+	t_img	*c_exit;
+	t_img	*o_exit;
+	t_img	*player;
+	t_img	*playerdoor;
+	t_img	*f_faith;
+	char	**map;
+	char	**map_copy;
+	int		y;
+	int		x;
+	int		i;
+	int		j;
+	int		len_x;
+	int		len_y;
+	int		col;
+	int		play;
+	int		ext;
 	int		flg;
 } t_data;
-
 
 enum e_error
 {
@@ -61,10 +89,10 @@ enum e_error
 	E_TOO_SML,
 	E_INV_MAP,
 	E_MALLOC,
-	E_MLX_NI,
-	E_MLX_INI,
-	E_XPM_FTI,
-	E_MLX_NW,
+	// E_MLX_NI,
+	// E_MLX_INI,
+	// E_XPM_FTI,
+	// E_MLX_NW,
 };
 
 typedef struct s_error
@@ -79,10 +107,10 @@ static t_error const g_error[] = {
 	{.id = E_TOO_SML, .err_msg = "Error\nMap too small\n"},
 	{.id = E_INV_MAP, .err_msg = "Error\nInvalid map\n"},
 	{.id = E_MALLOC, .err_msg = "Error\nProblem with malloc"},
-	{.id = E_MLX_NI, .err_msg = "Error\nFail at mlx_new_image"},
-	{.id = E_MLX_INI, .err_msg = "Error\nFail at mlx_init"},
-	{.id = E_XPM_FTI, .err_msg = "Error\nProble at mlx_xpm_file_to_image"},
-	{.id = E_MLX_NW, .err_msg = "Error\nFail at mlx_new_window"},
+	// {.id = E_MLX_NI, .err_msg = "Error\nFail at mlx_new_image"},
+	// {.id = E_MLX_INI, .err_msg = "Error\nFail at mlx_init"},
+	// {.id = E_XPM_FTI, .err_msg = "Error\nProble at mlx_xpm_file_to_image"},
+	// {.id = E_MLX_NW, .err_msg = "Error\nFail at mlx_new_window"},
 };
 
 void	print_err(enum e_error id);
@@ -101,14 +129,22 @@ int		ft_clean_and_return(t_data *data);
 
 int		ft_init_game(t_data *data);
 int		init_image(t_data *data);
-
-int		loop(t_data *data);
-void	render(t_data *data);
+int		handle_keypress(int keycode, t_data *data);
 
 void	move_top(t_data *d);
 void	move_down(t_data *d);
 void	move_right(t_data *d);
 void	move_left(t_data *d);
 
+int		loop(t_data *data);
+void	render(t_data *data);
+
+//////////////////////////////////////////////////////////////////////
+
+int		ft_init_game2(t_data *data);
+void	render2(t_data *data);
+void	my_put_image(t_data *data, t_img *img, int x, int y);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int		init_image2(t_data *data);
 
 #endif

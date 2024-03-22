@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 21:50:42 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/20 20:00:33 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:38:36 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,4 +114,10 @@ void	move_left(t_data *d)
 		d->map[d->y][d->x] = '0';
 		d->x -= 1;
 	}
+}
+
+int	exit_game(t_data *data)
+{
+	mlx_loop_end(data->mlx);
+	return (0);
 }
