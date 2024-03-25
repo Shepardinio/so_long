@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 21:31:47 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/22 19:48:45 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:13:29 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	init_data(t_data *data)
 	data->play = 0;
 	data->ext = 0;
 	data->flg = 0;
+	data->step_count = 0;
 	data->wall = NULL;
 	data->floor = NULL;
 	data->collect = NULL;
@@ -35,10 +36,10 @@ void	init_data(t_data *data)
 	data->player = NULL;
 	data->playerdoor = NULL;
 	data->f_faith = NULL;
-}
-	/*data->mlx_img = NULL;
+	data->mlx_img = NULL;
 	data->win_width = 0;
-	data->win_height = 0;*/
+	data->win_height = 0;
+}
 
 int	main(int argc, char **argv)
 {
@@ -54,7 +55,7 @@ int	main(int argc, char **argv)
 	data.mlx = mlx_init();
 	if (data.mlx == NULL)
 		return (ft_clean_and_exit(&data), 0);
-	ft_init_game(&data);
+	ft_init_game2(&data);
 	ft_clean_and_return(&data);
 	return (0);
 }

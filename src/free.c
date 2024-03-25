@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:07:33 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/22 14:41:45 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:16:13 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	ft_clean_and_exit(t_data *data)
 	if (data->mlx_win != NULL)
 		mlx_destroy_window(data->mlx, data->mlx_win);
 	destroy_image(data);
+	if (data->mlx_img != NULL)
+		mlx_destroy_image(data->mlx, data->mlx_img);
 	if (data->mlx != NULL)
 	{
 		mlx_destroy_display(data->mlx);
@@ -74,6 +76,8 @@ int	ft_clean_and_return(t_data *data)
 	if (data->mlx_win != NULL)
 		mlx_destroy_window(data->mlx, data->mlx_win);
 	destroy_image(data);
+	if (data->mlx_img != NULL)
+		mlx_destroy_image(data->mlx, data->mlx_img);
 	if (data->mlx != NULL)
 	{
 		mlx_destroy_display(data->mlx);
