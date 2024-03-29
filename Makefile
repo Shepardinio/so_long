@@ -36,11 +36,6 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -c $< -o $@ 
 
-norminette:
-	norminette $(SRC_DIR)
-	norminette libft
-	norminette ./include/
-
 clean:
 	@$(MAKE) -C libft clean
 	@$(MAKE) -C $(MINILIBX_DIR) clean

@@ -6,33 +6,11 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 17:55:28 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/25 15:35:10 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:59:35 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-// int	init_image(t_data *data)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	x = 0;
-// 	y = 0;
-// 	data->wall = mlx_xpm_file_to_image(data->mlx, WALL, &x, &y);
-// 	data->floor = mlx_xpm_file_to_image(data->mlx, FLOOR, &x, &y);
-// 	data->collect = mlx_xpm_file_to_image(data->mlx, COLLECT, &x, &y);
-// 	data->c_exit = mlx_xpm_file_to_image(data->mlx, C_EXIT, &x, &y);
-// 	data->o_exit = mlx_xpm_file_to_image(data->mlx, O_EXIT, &x, &y);
-// 	data->player = mlx_xpm_file_to_image(data->mlx, PLAYER, &x, &y);
-// 	data->playerdoor = mlx_xpm_file_to_image(data->mlx, PLAYERDOOR, &x, &y);
-// 	data->f_faith = mlx_xpm_file_to_image(data->mlx, FIND_FAITH, &x, &y);
-// 	if (!data->wall || !data->floor || !data->collect || !data->c_exit
-// 		|| !data->o_exit || !data->player || !data->playerdoor
-// 		|| !data->f_faith)
-// 		return (ft_clean_and_exit(data), EXIT_FAILURE);
-// 	return (EXIT_SUCCESS);
-// }
 
 int	handle_keypress(int keycode, t_data *data)
 {
@@ -46,6 +24,30 @@ int	handle_keypress(int keycode, t_data *data)
 		move_down(data);
 	else if (keycode == XK_d)
 		move_right(data);
+	return (0);
+}
+
+int	loop(t_data *data)
+{
+	char	*step;
+
+	while (data->map[data->j])
+	{
+		data->i = 0;
+		while (data->map[data->j][data->i])
+		{
+			render2(data);
+			data->i++;
+		}
+		data->j++;
+	}
+	data->j = 0;
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->mlx_img, 0, 0);
+	step = ft_itoa(data->step_count);
+	if (step == NULL)
+		ft_clean_and_exit(data, E_MLX);
+	mlx_string_put(data->mlx, data->mlx_win, 30, 30, 0xFFFFFFFF, step);
+	free(step);
 	return (0);
 }
 
@@ -77,37 +79,14 @@ int	handle_keypress(int keycode, t_data *data)
 // 			data->i * 64, data->j * 64);
 // }
 
-int	loop(t_data *data)
-{
-	char	*step;
-
-	while (data->map[data->j])
-	{
-		data->i = 0;
-		while (data->map[data->j][data->i])
-		{
-			render2(data);
-			step = ft_itoa(data->step_count);
-			if (step == NULL)
-				ft_clean_and_exit(data);
-			mlx_string_put(data->mlx, data->mlx_win, 30, 30, 0xFFFFFFFF, step);
-			free(step);
-			data->i++;
-		}
-		data->j++;
-	}
-	data->j = 0;
-	return (0);
-}
-
 // int	ft_init_game(t_data *data)
 // {
 // 	data->mlx_win = mlx_new_window(data->mlx, (data->len_x + 1) * 64,
 // 			data->len_y * 64, "The Binding of Issac");
 // 	if (data->mlx_win == NULL)
-// 		ft_clean_and_exit(data);
+// 		ft_clean_and_exit(data, E_MLX);
 // 	if (init_image2(data))
-// 		ft_clean_and_exit(data);
+// 		ft_clean_and_exit(data, E_MLX);
 // 	mlx_hook(data->mlx_win, 17, 0L, exit_game, data);
 // 	mlx_hook(data->mlx_win, 2, 1L << 0, handle_keypress, data);
 // 	mlx_loop_hook(data->mlx, loop, data);

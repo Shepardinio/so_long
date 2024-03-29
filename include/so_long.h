@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 14:17:13 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/25 15:34:12 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:49:40 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ enum e_error
 	E_TOO_SML,
 	E_INV_MAP,
 	E_MALLOC,
+	E_IMG_XPM,
+	E_MLX,
 };
 
 typedef struct s_error
@@ -105,6 +107,8 @@ static t_error const	g_error[] = {
 {.id = E_TOO_SML, .err_msg = "Error\nMap too small\n"},
 {.id = E_INV_MAP, .err_msg = "Error\nInvalid map\n"},
 {.id = E_MALLOC, .err_msg = "Error\nProblem with malloc"},
+{.id = E_IMG_XPM, .err_msg = "Error\nInvalid XPM"},
+{.id = E_MLX, .err_msg = "Error\nMLX related issue"},
 };
 
 void	print_err(enum e_error id);
@@ -113,25 +117,22 @@ int		check_len_line(t_data *data);
 int		check_wall(t_data *data);
 int		check_elem(t_data *data);
 int		check_nbelem(t_data *data);
+void	check_texture(t_data *data);
 int		ft_cpy_map(t_data *data);
 int		flood_fill(t_data *data);
 void	free_map(t_data *data);
 void	free_map_copy(t_data *data);
 int		exit_game(t_data *data);
-void	ft_clean_and_exit(t_data *data);
+void	ft_clean_and_exit(t_data *data, enum e_error id);
 int		ft_clean_and_return(t_data *data);
 
-int		ft_init_game(t_data *data);
-int		init_image(t_data *data);
 int		handle_keypress(int keycode, t_data *data);
-
 void	move_top(t_data *d);
 void	move_down(t_data *d);
 void	move_right(t_data *d);
 void	move_left(t_data *d);
 
 int		loop(t_data *data);
-void	render(t_data *data);
 
 //////////////////////////////////////////////////////////////////////
 

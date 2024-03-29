@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:07:33 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/25 15:16:13 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:51:27 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	destroy_image(t_data *data)
 		mlx_destroy_image(data->mlx, data->f_faith);
 }
 
-void	ft_clean_and_exit(t_data *data)
+void	ft_clean_and_exit(t_data *data, enum e_error id)
 {
 	if (data->map != NULL)
 		free_map(data);
@@ -66,6 +66,7 @@ void	ft_clean_and_exit(t_data *data)
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
 	}
+	print_err(id);
 	exit (0);
 }
 

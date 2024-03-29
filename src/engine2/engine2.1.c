@@ -6,7 +6,7 @@
 /*   By: mel-yand <mel-yand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 13:39:59 by mel-yand          #+#    #+#             */
-/*   Updated: 2024/03/25 15:04:16 by mel-yand         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:50:45 by mel-yand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,12 @@ int	init_image2(t_data *data)
 	data->player = mlx_xpm_file_to_image(data->mlx, PLAYER, &x, &y);
 	data->playerdoor = mlx_xpm_file_to_image(data->mlx, PLAYERDOOR, &x, &y);
 	data->f_faith = mlx_xpm_file_to_image(data->mlx, FIND_FAITH, &x, &y);
+	check_texture(data);
 	init_addr(data);
 	if (!data->wall || !data->floor || !data->collect || !data->c_exit
 		|| !data->o_exit || !data->player || !data->playerdoor
 		|| !data->f_faith)
-		return (ft_clean_and_exit(data), EXIT_FAILURE);
+		return (ft_clean_and_exit(data, E_MLX), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
@@ -101,5 +102,4 @@ void	render2(t_data *data)
 		my_put_image(data, data->playerdoor, data->i * 64, data->j * 64);
 	if (data->map[data->j][data->i] == 'P' && data->col == 0)
 		my_put_image(data, data->f_faith, data->i * 64, data->j * 64);
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->mlx_img, 0, 0);
 }
